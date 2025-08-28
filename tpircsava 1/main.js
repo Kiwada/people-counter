@@ -14,7 +14,16 @@ class ValidaFormulario {
 
     handleSubmit(e){
         e.preventDefault();
-        console.log('Formulario não enviado.....');
+        const camposValidos = this.camposSaoValidos();
+        }
+
+        camposSaoValidos(){
+            let valid = true;
+
+
+            for(let campo of this.formulario.querySelectorAll('.validar')){
+                console.log('Show')
+            }
         }
 }
 

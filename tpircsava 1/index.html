@@ -1,108 +1,44 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formulário Minimalista</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Inter", Arial, sans-serif;
-    }
-
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #f3f4f6;
-    }
-
-    form {
-      background: #ffffff;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      width: 100%;
-      max-width: 380px;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 1.5rem;
-      font-size: 1.4rem;
-      color: #111827;
-      font-weight: 600;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 0.3rem;
-      font-size: 0.9rem;
-      color: #374151;
-    }
-
-    input {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #d1d5db;
-      border-radius: 8px;
-      margin-bottom: 1.2rem;
-      font-size: 0.95rem;
-      background: #f9fafb;
-      transition: all 0.2s ease;
-    }
-
-    input:focus {
-      outline: none;
-      border-color: #3b82f6;
-      background: #fff;
-      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
-    }
-
-    button {
-      width: 100%;
-      padding: 0.9rem;
-      border: none;
-      border-radius: 8px;
-      background: #3b82f6;
-      color: white;
-      font-size: 1rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    button:hover {
-      background: #2563eb;
-    }
-  </style>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Modelo</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <form action="/tpircsava 1/main.js"  method="POST"  class='formulario'>
-    <h2>Cadastro</h2>
 
-    <label for="nome">Nome</label>
-    <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+  <section class="container">
+    <h1>Formulário de cadastro</h1>
+    <ul>
+      <li>Nenhum campo pode estar vazio</li>
+      <li>Usuário só poderá conter letras e/ou números</li>
+      <li>Usuário deverá ter entre 3 e 12 caracteres</li>
+      <li>Senha precisa ter entre 6 e 12 caracteres</li>
+    </ul>
+    
+    <form action="/" method="POST" class='formulario'>
+      <label>Nome</label>
+      <input type="text" class="nome validar">
+      <label>Sobrenome</label>
+      <input type="text" class="sobrenome validar">
+      <label>CPF</label>
+      <input type="text" class="cpf validar">
+      <label>Usuário</label>
+      <input type="text" class="usuario validar">
+      <label>Senha</label>
+      <input type="password" class="senha validar">
+      <label>Repetir Senha</label>
+      <input type="password" class="repetir-senha validar">
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
 
-    <label for="sobrenome">Sobrenome</label>
-    <input type="text" id="sobrenome" name="sobrenome" placeholder="Digite seu sobrenome" required>
-
-    <label for="cpf">CPF</label>
-    <input type="text" id="cpf" name="cpf" pattern="\d{11}" placeholder="Somente números" required>
-
-    <label for="usuario">Usuário</label>
-    <input type="text" id="usuario" name="usuario" placeholder="Escolha um usuário" required>
-
-    <label for="senha">Senha</label>
-    <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
-
-    <label for="confirmarSenha">Repetir Senha</label>
-    <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Repita sua senha" required>
-
-    <button type="submit">Enviar</button>
-  </form>
+  <script src="./assets/js/validaCPF.js"></script>
+  <script src="./assets/js/main.js"></script>
 </body>
+
 </html>
