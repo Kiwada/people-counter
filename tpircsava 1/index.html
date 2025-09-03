@@ -20,49 +20,29 @@
     </ul>
 
 
-    <form class="formulario" id="formCadastro">
-      <label for="nome">Nome</label>
-      <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
-
-      <label for="sobrenome">Sobrenome</label>
-      <input type="text" id="sobrenome" name="sobrenome" placeholder="Digite seu sobrenome" required>
-
-      <label for="cpf">CPF</label>
-      <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" required>
-
-      <label for="usuario">Usuário</label>
-      <input type="text" id="usuario" name="usuario" placeholder="Nome de usuário" minlength="3" maxlength="12" pattern="[A-Za-z0-9]+" required>
-
-      <label for="senha">Senha</label>
-      <input type="password" id="senha" name="senha" placeholder="******" minlength="6" maxlength="12" required>
-
-      <label for="repetirSenha">Repetir Senha</label>
-      <input type="password" id="repetirSenha" name="repetirSenha" placeholder="******" minlength="6" maxlength="12" required>
-
-      <span id="erroSenha" class="error-text" style="display:none;">As senhas não conferem</span>
-
+      <form action="/" method="POST" class='formulario'></form>
+      <label>Nome</label>
+      <input type="text" class="nome validar">
+      <label>Sobrenome</label>
+      <input type="text" class="sobrenome validar">
+      <label>CPF</label>
+      <input type="text" class="cpf validar">
+      <label>Usuário</label>
+      <input type="text" class="usuario validar">
+      <label>Senha</label>
+      <input type="password" class="senha validar">
+      <label>Repetir Senha</label>
+      <input type="password" class="repetir-senha validar">
       <button type="submit">Enviar</button>
+    </form>
+  </section>
     </form>
   </section>
 
   <script src="./assets/js/validaCPF.js"></script>
-  <script>
+  <script src="./valida-cpf-classe.js"></script>
 
-    const form = document.getElementById("formCadastro");
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const senha = form.senha.value;
-      const repetir = form.repetirSenha.value;
-      const erro = document.getElementById("erroSenha");
 
-      if (senha !== repetir) {
-        erro.style.display = "block";
-        return;
-      }
-      erro.style.display = "none";
 
-      alert("Cadastro validado no front-end!");
-    });
-  </script>
-</body>
+</body> 
 </html>
