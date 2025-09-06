@@ -1,41 +1,55 @@
-// index.js
-function somenteNumeros(str) {
-  return (str || "").replace(/\D/g, "");
+function ValidaCpf(cpfEnviado){
+  Object.defineProperty(this , 'cpfLimpo' , 
+    
+    { get: function(){
+      return cpfEnviado.replace(/\D+/g,'');
+    }
+  });
 }
 
-function sequencia(cpf) {
-  return cpf.split("").every(ch => ch === cpf[0]);
+ValidaCpf.prototype.valida = function(){
+  if(typeof this.cpfLimpo === 'undefined') return false;
+  if(this.cpfLimpo.length !== 11) return false;
+  if(this.isSequencia()) return false;
+
+  const cpfParcial = this.cpfLimpo.slice( 0 , -2);
+  const digito1 = this.criaDigito(cpfParcial);
+  const digito2 = this.criaDigito(cpfParcial + digito1);
+
+  const novoCpf = cpfParcial + digito1 + digito2;
+  return novoCpf === this.cpfLimpo;
+
+
+};
+
+ValidaCpf.prototype.criaDigito = function(cpfParcial) {
+  const cpfArray = Array.from(cpfParcial);
+
+  
+  let regressivo = cpfArray.length + 1; 
+  let total = cpfArray.reduce((ac, val) => {
+    ac += (regressivo* Number(val));
+    regressivo --;
+    return ac;
+  }, 0 );
+
+  const digito = 11 - (total % 11 );
+  return digito > 9 ? '0' : String(digito);
+  
 }
 
-function calculaDigito(numeros) {
-  let soma = 0;
-  for (let i = 0, j = numeros.length + 1; i < numeros.length; i++, j--) {
-    soma += Number(numeros[i]) * j;
-  }
-  const mod = soma % 11;
-  return mod < 2 ? 0 : 11 - mod;
+ValidaCpf.prototype.isSequencia = function(){
+  const sequencia = this.cpfLimpo[0].repeat(this.cpfLimpo.length);
+  return sequencia === this.cpfLimpo;
 }
 
-function validarCPF(input) {
-  const cpf = somenteNumeros(input);
-  if (cpf.length !== 11) return false;
-  if (sequencia(cpf)) return false;
 
-  const base = cpf.slice(0, 9);
-  const d1 = calculaDigito(base);
-  const d2 = calculaDigito(base + d1);
 
-  return cpf === base + String(d1) + String(d2);
-}
+const cpf = new ValidaCpf('705.484.450-52');
+console.log(cpf.valida());
 
-// Exemplos de teste
-const exemplos = [
-  "529.982.247-25", // válido
-  "123.456.789-09", // inválido
-  "111.111.111-11", // inválido
-  "935.411.347-80"  // válido
-];
-
-for (const cpf of exemplos) {
-  console.log(cpf, "=>", validarCPF(cpf));
+if(cpf.valida()){
+  console.log('cpf válido');
+} else {
+  console.log('cpf inválido');
 }
